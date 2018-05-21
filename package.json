@@ -1,0 +1,22 @@
+{
+  "name": "gossipprotocol",
+  "version": "1.0.0",
+  "description": "simple node implementation of a Gossip communication Protocol",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manymotes/GossipProtocol.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manymotes/GossipProtocol/issues"
+  },
+  "homepage": "https://github.com/manymotes/GossipProtocol#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
