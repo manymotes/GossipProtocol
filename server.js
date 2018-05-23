@@ -8,18 +8,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use(express.static('public'))
-
-let items = [];
 let id = 0;
-let priority = 0;
-let solo = 0;
-let duo = 0;
-let squad = 0;
+let joeMessages = [
+  {
+    userName: 'Mike',
+    type: 'otherCourseScore',
+    score: 7
+  }
+];
+let kendallMessages = [];
+let bobMessages = [];
 
 
-app.get('/api/items', (req, res) => {
-  res.send(items);
+
+app.put('api/joe', (req, res) => {
+
+  this.id = this.id + 1;
+  let joe = {id:id, };
+  joeMessages.push(joe);
+
 });
+
+app.get('/api/joe', (req, res) => {
+  res.json(joeMessages);
+});
+
 
 app.put('/api/items/:id', (req, res) => {
   let id = parseInt(req.params.id);
@@ -38,30 +51,6 @@ app.put('/api/items/:id', (req, res) => {
   res.send(item);
 });
 
-app.post('/api/items', (req, res) => {
-  id = id + 1;
-  let item = {id:id, text:req.body.text, priority:req.body.priority, solo:req.body.solo, duo:req.body.duo, squad:req.body.squad, completed: req.body.completed};
-  items.push(item);
 
-  var sortable = [];
-  for (var itemtemp in items) {
-      sortable.push([itemtemp, items[itemtemp]]);
-  }
-  sortable.sort(function(a, b) {
-      return a[1] - b[1];
-  });
-  res.send(item);
-});
-
-app.delete('/api/items/:id', (req, res) => {
-  let id = parseInt(req.params.id);
-  let removeIndex = items.map(item => { return item.id; }).indexOf(id);
-  if (removeIndex === -1) {
-    res.status(404).send("Sorry, that item doesn't exist");
-    return;
-  }
-  items.splice(removeIndex, 1);
-  res.sendStatus(200);
-});
 
 app.listen(3001, () => console.log('Server listening on port 3001!'))

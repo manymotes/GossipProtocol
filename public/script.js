@@ -104,12 +104,12 @@ console.log(document.cookie);
 		var value = "kendall";
 		document.cookie = "name=" + value;
 	//	document.cookie = "access_token=" + JSON.access_token;
-		document.cookie = "loggedIn=" +"false";
+		document.cookie = "loggedIn=" +"true";
 		var foursquareApi = {
 
 			clientId: "VQHLRGUBJF1PZRNJSPIQID5JNZQ1E0XU4V5UE45HJ540CQSM",
 	    	clientSecret: "2EX1IFCJB0DBB0LIUV3CBT1OTUYYDMGPS5QSKLMD0FCZYVAD",
-		    redirectUrl : "http://localhost:3001/profile.html",
+		    redirectUrl : "http://localhost:3001/KendallProfile.html",
 		}
 
 		var url = "https://foursquare.com/oauth2/authenticate";
@@ -131,7 +131,7 @@ console.log(document.cookie);
 
 				document.cookie = "name=" + value;
 				document.cookie = "access_token=" + JSON.access_token;
-				document.cookie = "loggedIn=" +"false";
+				document.cookie = "loggedIn=" +"true";
 
 
 			}}).done(function(){
@@ -150,13 +150,13 @@ console.log(document.cookie);
 		var value = "joe";
 		document.cookie = "name=" + value;
 		//document.cookie = "access_token=" + JSON.access_token;
-		document.cookie = "loggedIn=" +"false";
+		document.cookie = "loggedIn=" +"true";
 
 		var foursquareApi = {
 
 			clientId: "VQHLRGUBJF1PZRNJSPIQID5JNZQ1E0XU4V5UE45HJ540CQSM",
 				clientSecret: "2EX1IFCJB0DBB0LIUV3CBT1OTUYYDMGPS5QSKLMD0FCZYVAD",
-				redirectUrl : "http://localhost:3001/profile.html",
+				redirectUrl : "http://localhost:3001/JoeProfile.html",
 		}
 
 		var url = "https://foursquare.com/oauth2/authenticate";
@@ -190,6 +190,56 @@ console.log(document.cookie);
 
 	});
 	//end of joe
+
+	//start of bob
+	$("#joe").click(function(e) {
+		e.preventDefault();
+
+		var value = "joe";
+		document.cookie = "name=" + value;
+		//document.cookie = "access_token=" + JSON.access_token;
+		document.cookie = "loggedIn=" +"true";
+
+		var foursquareApi = {
+
+			clientId: "VQHLRGUBJF1PZRNJSPIQID5JNZQ1E0XU4V5UE45HJ540CQSM",
+				clientSecret: "2EX1IFCJB0DBB0LIUV3CBT1OTUYYDMGPS5QSKLMD0FCZYVAD",
+				redirectUrl : "http://localhost:3001/BobProfile.html",
+		}
+
+		var url = "https://foursquare.com/oauth2/authenticate";
+						 url += "?client_id="+foursquareApi.clientId;
+						 url += "&response_type=token";
+						 url += "&redirect_uri="+foursquareApi.redirectUrl;
+						 window.location = url;
+
+		$.ajax({
+			type: 'get',
+				url : url,
+				dataType : "json",
+			success : function(JSON) {
+				console.log(win.location.pathname);
+				myJSON = JSON;
+				console.log(JSON);
+				console.log(myJSON);
+				console.log(myJSON.access_token);
+				//var value = "joe";
+				document.cookie = "name=" + value;
+				document.cookie = "access_token=" + JSON.access_token;
+				document.cookie = "loggedIn=" +"false";
+
+
+			}}).done(function(){
+			console.log(myJSON);
+				console.log(myJSON.access_token);
+			 callback(true);
+		});
+
+
+	});
+	//end of bob
+
+
 
 
 });

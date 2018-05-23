@@ -136,6 +136,8 @@ var myurl = "https://api.foursquare.com/v2/users/self/checkins" + "?oauth_token=
 
 
 
+
+
         }
 
     });
@@ -173,6 +175,32 @@ $("#logout").click(function(e) {
 
 
     });
+
+
+
+    $("#rumorSubmit").click(function(e) {
+        e.preventDefault();
+
+        console.log("in RomorSubmit");
+
+        var myurl2= "http://localhost:3001/api/joe"
+				$.ajax({
+					url : myurl2,
+					dataType2 : "json",
+                    async: false,
+					success : function(JSON2) {
+						console.log(JSON2);
+
+
+	         // $("div").append(result2);
+					}
+				});
+
+
+    });
+
+
+
 
 });
 
