@@ -21,11 +21,13 @@ let bobMessages = [];
 
 
 
-app.put('api/joe', (req, res) => {
+app.post('api/joerumor', function(req, res) {
 
-  this.id = this.id + 1;
-  let joe = {id:id, };
+  //this.id = this.id + 1;
+  let joe = {id:req.params.id, originator: req.params.originator, text: req.params.text};
   joeMessages.push(joe);
+  console.log(req.params.text);
+  res.status(200);
 
 });
 

@@ -183,18 +183,39 @@ $("#logout").click(function(e) {
 
         console.log("in RomorSubmit");
 
+        ///begin post
+        var myurl= "http://localhost:3001/api/joerumor"
+				$.ajax({
+					url : myurl,
+                    type: "post",
+					dataType2 : "json",
+                    data: {
+                        'id':'1',
+                        'originator':'Joe',
+                        'text':'assuh Dude'
+                    },
+                    async: false,
+					success : function(JSON2) {
+						console.log(JSON2);
+
+					}
+				});
+        //end post
+
+
+//begin get
         var myurl2= "http://localhost:3001/api/joe"
 				$.ajax({
 					url : myurl2,
+                    type: "GET",
 					dataType2 : "json",
                     async: false,
 					success : function(JSON2) {
 						console.log(JSON2);
 
-
-	         // $("div").append(result2);
 					}
 				});
+                //end GET
 
 
     });
