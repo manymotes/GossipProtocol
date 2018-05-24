@@ -9,32 +9,65 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static('public'))
 let id = 0;
-let joeMessages = [
-  {
-    userName: 'Mike',
-    type: 'otherCourseScore',
-    score: 7
-  }
-];
+let joeMessages = [];
 let kendallMessages = [];
 let bobMessages = [];
 
 
 
-app.post('api/joerumor', function(req, res) {
+// app.put('api/joerumor', function(req, res) {
 
-  //this.id = this.id + 1;
-  let joe = {id:req.params.id, originator: req.params.originator, text: req.params.text};
+//   //this.id = this.id + 1;
+//   // let joe = {id:req.params.id, originator: req.params.originator, text: req.params.text};
+//   // joeMessages.push(joe);
+//   console.log(req.params.text);
+//   res.send("ok");
+
+// });
+
+app.post('/api/joerumor', function (req, res) {
+ 
+  console.log(req.body);
+  let joe = {id:req.body.id, originator: req.body.originator, text: req.body.text};
   joeMessages.push(joe);
-  console.log(req.params.text);
-  res.status(200);
 
+  res.end();
 });
 
 app.get('/api/joe', (req, res) => {
   res.json(joeMessages);
 });
 
+
+//kendall start
+app.post('/api/kendallrumor', function (req, res) {
+ 
+  console.log(req.body);
+  let kendall = {id:req.body.id, originator: req.body.originator, text: req.body.text};
+  kendallMessages.push(kendall);
+
+  res.end();
+});
+
+app.get('/api/kendall', (req, res) => {
+  res.json(kendallMessages);
+});
+//kendall end
+
+//bob start
+app.post('/api/bobrumor', function (req, res) {
+ 
+  console.log(req.body);
+  let bob = {id:req.body.id, originator: req.body.originator, text: req.body.text};
+  kendallMessages.push(bob);
+
+  res.end();
+});
+
+app.get('/api/bob', (req, res) => {
+  res.json(bobMessages);
+});
+//bob end
 
 app.put('/api/items/:id', (req, res) => {
   let id = parseInt(req.params.id);

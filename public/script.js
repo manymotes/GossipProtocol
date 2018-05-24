@@ -192,10 +192,10 @@ console.log(document.cookie);
 	//end of joe
 
 	//start of bob
-	$("#joe").click(function(e) {
+	$("#bob").click(function(e) {
 		e.preventDefault();
 
-		var value = "joe";
+		var value = "bob";
 		document.cookie = "name=" + value;
 		//document.cookie = "access_token=" + JSON.access_token;
 		document.cookie = "loggedIn=" +"true";
