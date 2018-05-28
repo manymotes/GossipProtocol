@@ -12,6 +12,7 @@ let id = 0;
 let joeMessages = [];
 let kendallMessages = [];
 let bobMessages = [];
+let map = {};
 
 
 
@@ -59,7 +60,7 @@ app.post('/api/bobrumor', function (req, res) {
  
   console.log(req.body);
   let bob = {id:req.body.id, originator: req.body.originator, text: req.body.text};
-  kendallMessages.push(bob);
+  bobMessages.push(bob);
 
   res.end();
 });
@@ -69,23 +70,27 @@ app.get('/api/bob', (req, res) => {
 });
 //bob end
 
-app.put('/api/items/:id', (req, res) => {
-  let id = parseInt(req.params.id);
-  let itemsMap = items.map(item => { return item.id; });
-  let index = itemsMap.indexOf(id);
-  let item = items[index];
-  item.completed = req.body.completed;
-  item.text = req.body.text;
-  // handle drag and drop re-ordering
-    if (req.body.orderChange) {
-      let indexTarget = itemsMap.indexOf(req.body.orderTarget);
-      items.splice(index,1);
-      items.splice(indexTarget,0,item);
-    }
-
-  res.send(item);
+//begin randoms
+app.post('/api/newby', (req, res) => {
+  res.json(map[req.body.user]);
 });
 
+app.post('/api/newbyrumor', (req, res) => {
+  
+  let newmessage = {id:req.body.id, originator: req.body.originator, text: req.body.text};
+  addValueToList(req.body.user, newmessage);
+
+  res.end();
+
+});
+//end randoms
+
+function addValueToList(key, value) {
+    //if the list is already created for the "key", then uses it
+    //else creates new list for the "key" to store multiple values in it.
+    map[key] = map[key] || [];
+    map[key].push(value);
+}
 
 
 app.listen(3001, () => console.log('Server listening on port 3001!'))

@@ -239,7 +239,14 @@ console.log(document.cookie);
 	});
 	//end of bob
 
+	//start random user
+	$("#random").click(function(e) {
+		e.preventDefault();
+		window.location.href = "http://localhost:3001/newUser.html";
 
+
+	});
+	//end random user
 
 
 });
