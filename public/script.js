@@ -242,6 +242,12 @@ console.log(document.cookie);
 	//start random user
 	$("#random").click(function(e) {
 		e.preventDefault();
+		window.location.href = "http://localhost:3001/randomUser.html";
+
+
+	});
+	$("#user").click(function(e) {
+		e.preventDefault();
 		window.location.href = "http://localhost:3001/newUser.html";
 
 
